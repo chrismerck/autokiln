@@ -1,0 +1,232 @@
+EESchema Schematic File Version 2
+LIBS:power
+LIBS:device
+LIBS:transistors
+LIBS:conn
+LIBS:linear
+LIBS:regul
+LIBS:74xx
+LIBS:cmos4000
+LIBS:adc-dac
+LIBS:memory
+LIBS:xilinx
+LIBS:special
+LIBS:microcontrollers
+LIBS:dsp
+LIBS:microchip
+LIBS:analog_switches
+LIBS:motorola
+LIBS:texas
+LIBS:intel
+LIBS:audio
+LIBS:interface
+LIBS:digital-audio
+LIBS:philips
+LIBS:display
+LIBS:cypress
+LIBS:siliconi
+LIBS:opto
+LIBS:atmel
+LIBS:contrib
+LIBS:valves
+LIBS:custom
+EELAYER 25 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 6 6
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L CONN_01X03 P?
+U 1 1 5506550F
+P 5550 3150
+F 0 "P?" H 5550 3350 50  0000 C CNN
+F 1 "HUMID" H 5750 3200 50  0000 C CNN
+F 2 "" H 5550 3150 60  0000 C CNN
+F 3 "" H 5550 3150 60  0000 C CNN
+	1    5550 3150
+	-1   0    0    -1  
+$EndComp
+Text Notes 5100 3200 2    60   ~ 0
+from RHT03\nor DHT-22
+Wire Wire Line
+	5750 3050 5850 3050
+Wire Wire Line
+	5850 3050 5950 3050
+Wire Wire Line
+	5850 2900 5850 3050
+$Comp
+L VCC #PWR?
+U 1 1 5506576A
+P 5850 2900
+F 0 "#PWR?" H 5850 2750 60  0001 C CNN
+F 1 "VCC" H 5850 3050 60  0000 C CNN
+F 2 "" H 5850 2900 60  0000 C CNN
+F 3 "" H 5850 2900 60  0000 C CNN
+	1    5850 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 3250 5850 3250
+Wire Wire Line
+	5850 3250 5850 3350
+$Comp
+L GND #PWR?
+U 1 1 5506578A
+P 5850 3350
+F 0 "#PWR?" H 5850 3100 60  0001 C CNN
+F 1 "GND" H 5850 3200 60  0000 C CNN
+F 2 "" H 5850 3350 60  0000 C CNN
+F 3 "" H 5850 3350 60  0000 C CNN
+	1    5850 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 3150 6400 3150
+Wire Wire Line
+	6400 3150 7050 3150
+$Comp
+L R R?
+U 1 1 550657CF
+P 6100 3050
+F 0 "R?" V 6180 3050 50  0000 C CNN
+F 1 "1k" V 6100 3050 50  0000 C CNN
+F 2 "" V 6030 3050 30  0000 C CNN
+F 3 "" H 6100 3050 30  0000 C CNN
+	1    6100 3050
+	0    1    -1   0   
+$EndComp
+Connection ~ 5850 3050
+Wire Wire Line
+	6250 3050 6400 3050
+Wire Wire Line
+	6400 3050 6400 3150
+Connection ~ 6400 3150
+Text Label 6500 3150 0    60   ~ 0
+HUMID_DATA
+Wire Wire Line
+	9800 1100 10400 1100
+Text Label 9800 1100 0    60   ~ 0
+HUMID_DATA
+Text GLabel 10400 1100 2    60   BiDi ~ 0
+HUMID_DATA
+Text Notes 5250 2550 0    60   ~ 0
+HUMIDITY AND TEMP SENSOR
+$Comp
+L CONN_01X04 P?
+U 1 1 55065A06
+P 5500 4650
+F 0 "P?" H 5500 4900 50  0000 C CNN
+F 1 "BAROM" H 5700 4650 50  0000 C CNN
+F 2 "" H 5500 4650 60  0000 C CNN
+F 3 "" H 5500 4650 60  0000 C CNN
+	1    5500 4650
+	-1   0    0    -1  
+$EndComp
+Text Notes 5000 4700 2    60   ~ 0
+from BMP180\nI2C BAROMETER\n
+Text Notes 5200 3950 0    60   ~ 0
+BAROMETRIC PRESSURE SENSOR
+Wire Wire Line
+	5700 4500 5850 4500
+Wire Wire Line
+	5850 4500 5950 4500
+Wire Wire Line
+	5850 4500 5850 4350
+Wire Wire Line
+	5850 4350 5850 4300
+$Comp
+L VCC #PWR?
+U 1 1 55065B60
+P 5850 4300
+F 0 "#PWR?" H 5850 4150 60  0001 C CNN
+F 1 "VCC" H 5850 4450 60  0000 C CNN
+F 2 "" H 5850 4300 60  0000 C CNN
+F 3 "" H 5850 4300 60  0000 C CNN
+	1    5850 4300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5700 4600 6850 4600
+Wire Wire Line
+	6850 4600 7450 4600
+Wire Wire Line
+	5700 4700 6300 4700
+Wire Wire Line
+	6300 4700 7450 4700
+Wire Wire Line
+	5700 4800 5850 4800
+Wire Wire Line
+	5850 4800 5850 4900
+$Comp
+L GND #PWR?
+U 1 1 55065BB3
+P 5850 4900
+F 0 "#PWR?" H 5850 4650 60  0001 C CNN
+F 1 "GND" H 5850 4750 60  0000 C CNN
+F 2 "" H 5850 4900 60  0000 C CNN
+F 3 "" H 5850 4900 60  0000 C CNN
+	1    5850 4900
+	1    0    0    -1  
+$EndComp
+Text Label 6950 4600 0    60   ~ 0
+BAROM_SDA
+Text Label 6950 4700 0    60   ~ 0
+BAROM_SCL
+$Comp
+L R R?
+U 1 1 55065BFC
+P 6100 4500
+F 0 "R?" V 6000 4500 50  0000 C CNN
+F 1 "4k7" V 6100 4500 50  0000 C CNN
+F 2 "" V 6030 4500 30  0000 C CNN
+F 3 "" H 6100 4500 30  0000 C CNN
+	1    6100 4500
+	0    1    1    0   
+$EndComp
+$Comp
+L R R?
+U 1 1 55065C6C
+P 6550 4350
+F 0 "R?" V 6450 4350 50  0000 C CNN
+F 1 "4k7" V 6550 4350 50  0000 C CNN
+F 2 "" V 6480 4350 30  0000 C CNN
+F 3 "" H 6550 4350 30  0000 C CNN
+	1    6550 4350
+	0    1    1    0   
+$EndComp
+Connection ~ 5850 4500
+Wire Wire Line
+	5850 4350 6400 4350
+Connection ~ 5850 4350
+Wire Wire Line
+	6700 4350 6850 4350
+Wire Wire Line
+	6850 4350 6850 4600
+Connection ~ 6850 4600
+Wire Wire Line
+	6250 4500 6300 4500
+Wire Wire Line
+	6300 4500 6300 4700
+Connection ~ 6300 4700
+Wire Wire Line
+	9800 1400 10400 1400
+Text Label 9800 1400 0    60   ~ 0
+BAROM_SDA
+Text GLabel 10400 1400 2    60   BiDi ~ 0
+BAROM_SDA
+Wire Wire Line
+	9800 1650 10400 1650
+Text Label 9800 1650 0    60   ~ 0
+BAROM_SCL
+Text GLabel 10400 1650 2    60   BiDi ~ 0
+BAROM_SCL
+$EndSCHEMATC

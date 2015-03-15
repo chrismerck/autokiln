@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP KA278R12C
+D KA378R12C, Positive 3A 35V Linear Regulator with Disable Pin, LDO, Fixed Output 12V, TO-220F-4L
+K Voltage Regulator 3A Positive LDO Disable Pin
+F http://www.fairchildsemi.com/ds/KA/KA378R12CTU.pdf
+$ENDCMP
+#
+#End Doc Library
