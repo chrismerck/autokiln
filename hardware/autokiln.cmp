@@ -1,0 +1,472 @@
+Cmp-Mod V01 Created by Cvpcb 0.201503150816+5513~22~ubuntu14.04.1-product   date = Sun 22 Mar 2015 04:01:55 PM EDT
+
+BeginCmp
+TimeStamp = /5505BC57/550DB80D;
+Reference = C1;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550DB7BA;
+Reference = C2;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550DB77E;
+Reference = C3;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550DBB74;
+Reference = C4;
+ValeurCmp = 4u7;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550DB5DB;
+Reference = C5;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505D356;
+Reference = C6;
+ValeurCmp = 10pF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505D710;
+Reference = C7;
+ValeurCmp = 10pF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550DD56E;
+Reference = C8;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550DC6FB;
+Reference = C9;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D6CC1;
+Reference = C10;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D6C42;
+Reference = C11;
+ValeurCmp = 100nF;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55067103;
+Reference = C12;
+ValeurCmp = 4u7;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/550665C4;
+Reference = C13;
+ValeurCmp = 100uF;
+IdModule  = autokiln:KEMET_100uF_25V;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55085C2F;
+Reference = C14;
+ValeurCmp = 4u7;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55085B71;
+Reference = C15;
+ValeurCmp = 100uF;
+IdModule  = autokiln:KEMET_100uF_25V;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55066666;
+Reference = C16;
+ValeurCmp = 100uF;
+IdModule  = autokiln:KEMET_100uF_25V;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55066FED;
+Reference = C17;
+ValeurCmp = 100uF;
+IdModule  = autokiln:KEMET_100uF_25V;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5506407D;
+Reference = D1;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/55064094;
+Reference = D2;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/55064167;
+Reference = D3;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505FD54;
+Reference = D4;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/55063F04;
+Reference = D5;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/5506732C;
+Reference = D6;
+ValeurCmp = 12V LED;
+IdModule  = Diodes_ThroughHole:Diode_LED_5mm_round_vertical;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D83CF;
+Reference = J1;
+ValeurCmp = GAIN JUMPER;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x03;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D8785;
+Reference = J2;
+ValeurCmp = SPEED JUMPER;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x03;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/550DC9CD;
+Reference = J3;
+ValeurCmp = HUMID PWR;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x03;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505E8C3;
+Reference = K1;
+ValeurCmp = 12V 250VAC 10A;
+IdModule  = Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505E99E;
+Reference = K2;
+ValeurCmp = 12V 250VAC 10A;
+IdModule  = Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505E9D7;
+Reference = K3;
+ValeurCmp = 12V 250VAC 10A;
+IdModule  = Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505EA64;
+Reference = K4;
+ValeurCmp = 12V 250VAC 10A;
+IdModule  = Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505EACF;
+Reference = K5;
+ValeurCmp = 12V 250VAC 10A;
+IdModule  = Relays_ThroughHole:Relay_SANYOU_SRD_Series_Form_C;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505C6C3;
+Reference = P1;
+ValeurCmp = DEBUG;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x04;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5506BFB8;
+Reference = P2;
+ValeurCmp = SWD;
+IdModule  = Pin_Headers:Pin_Header_Straight_1x06;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D736C;
+Reference = P3;
+ValeurCmp = LOAD CELL 1;
+IdModule  = autokiln:ostoq047151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D777A;
+Reference = P4;
+ValeurCmp = LOAD CELL 2;
+IdModule  = autokiln:ostoq047151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D78A9;
+Reference = P5;
+ValeurCmp = LOAD CELL 3;
+IdModule  = autokiln:ostoq047151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D78C3;
+Reference = P6;
+ValeurCmp = LOAD CELL 4;
+IdModule  = autokiln:ostoq047151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505EFEF;
+Reference = P7;
+ValeurCmp = HEATER;
+IdModule  = autokiln:OSTOQ020151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505F07F;
+Reference = P8;
+ValeurCmp = DEHUMIDIFIER;
+IdModule  = autokiln:OSTOQ020151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505F0F2;
+Reference = P9;
+ValeurCmp = FAN;
+IdModule  = autokiln:OSTOQ020151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505F180;
+Reference = P10;
+ValeurCmp = VACUUM;
+IdModule  = autokiln:OSTOQ020151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/5505F2A2;
+Reference = P11;
+ValeurCmp = CONDITIONER;
+IdModule  = autokiln:OSTOQ020151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/55065A06;
+Reference = P12;
+ValeurCmp = BAROM;
+IdModule  = autokiln:ostoq047151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/5506550F;
+Reference = P13;
+ValeurCmp = HUMID1;
+IdModule  = autokiln:OSTOQ037151;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/550D95D8;
+Reference = P14;
+ValeurCmp = HUMID2;
+IdModule  = autokiln:OSTOQ037151;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55065FE1;
+Reference = P15;
+ValeurCmp = VIN;
+IdModule  = autokiln:CUI_PJ-002AH_DC_PWR_JACK;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550F2DEF;
+Reference = P16;
+ValeurCmp = UEXT;
+IdModule  = Pin_Headers:Pin_Header_Straight_2x05;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550C989C;
+Reference = R1;
+ValeurCmp = 3;
+IdModule  = Resistors_ThroughHole:Resistor_Horizontal_RM10mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/55065BFC;
+Reference = R2;
+ValeurCmp = 4k7;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/550657CF;
+Reference = R3;
+ValeurCmp = 1k;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/550D95F2;
+Reference = R4;
+ValeurCmp = 1k;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BD04/55065C6C;
+Reference = R5;
+ValeurCmp = 4k7;
+IdModule  = Resistors_SMD:R_0805_HandSoldering;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550C8A80;
+Reference = RV1;
+ValeurCmp = 10K;
+IdModule  = autokiln:BOURNS_TRIMMER_3303W;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5507050B;
+Reference = SW1;
+ValeurCmp = MENU;
+IdModule  = autokiln:CK_Button_D6R;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/55070A62;
+Reference = SW2;
+ValeurCmp = RESET;
+IdModule  = autokiln:CK_Button_D6R;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/55070B06;
+Reference = SW3;
+ValeurCmp = MANUAL;
+IdModule  = autokiln:CK_Button_D6R;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550685A0;
+Reference = SW4;
+ValeurCmp = PEC16-4215F-S0024;
+IdModule  = autokiln:BOURNS_Encoder_PEC16;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/550663B6;
+Reference = SW5;
+ValeurCmp = PWR SWITCH;
+IdModule  = autokiln:ESwitch-100SP1T1B4M2QE;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/550C7F12;
+Reference = U1;
+ValeurCmp = NHD-0420AZ-FL-YBW-33V3;
+IdModule  = autokiln:NHD-0420AZ-FL-GBW-33V3;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505BC8C;
+Reference = U2;
+ValeurCmp = STM32F070CBT6;
+IdModule  = Housings_QFP:LQFP-48_7x7mm_Pitch0.5mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505BCD0;
+Reference = U3;
+ValeurCmp = 24LC512;
+IdModule  = Housings_SOIC:SOIC-8_3.9x4.9mm_Pitch1.27mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCF7/550D6BB5;
+Reference = U4;
+ValeurCmp = ADS1234;
+IdModule  = Housings_SSOP:TSSOP-28_4.4x9.7mm_Pitch0.65mm;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BCFC/55062CD9;
+Reference = U5;
+ValeurCmp = ULQ2003;
+IdModule  = SMD_Packages:SO-16-N;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/550F0F34;
+Reference = U6;
+ValeurCmp = L7805;
+IdModule  = autokiln:TO-220_SG;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/55066DE3;
+Reference = U7;
+ValeurCmp = L4931;
+IdModule  = Power_Integrations:SO-8;
+EndCmp
+
+BeginCmp
+TimeStamp = /55065FD8/550662FC;
+Reference = U8;
+ValeurCmp = KA278R12C;
+IdModule  = autokiln:TO-220F-4L;
+EndCmp
+
+BeginCmp
+TimeStamp = /5505BC57/5505D167;
+Reference = X1;
+ValeurCmp = 32kHz;
+IdModule  = autokiln:Abracon_32KHz;
+EndCmp
+
+EndListe

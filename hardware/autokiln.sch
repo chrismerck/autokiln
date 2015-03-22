@@ -36,10 +36,10 @@ EELAYER END
 $Descr USLetter 11000 8500
 encoding utf-8
 Sheet 1 6
-Title ""
-Date ""
-Rev ""
-Comp ""
+Title "Wood Drying Kiln Controller \"AutoKiln\""
+Date "Sat 21 Mar 2015"
+Rev "A1"
+Comp "Chris Merck"
 Comment1 ""
 Comment2 ""
 Comment3 ""
