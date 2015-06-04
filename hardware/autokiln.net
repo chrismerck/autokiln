@@ -1,7 +1,7 @@
 (export (version D)
   (design
     (source /home/cmerck/src/autokiln/hardware/autokiln.sch)
-    (date "Sun 22 Mar 2015 05:14:27 PM EDT")
+    (date "Wed 01 Apr 2015 09:28:03 AM EDT")
     (tool "Eeschema 0.201503150816+5513~22~ubuntu14.04.1-product")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
