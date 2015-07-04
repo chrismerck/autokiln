@@ -112,18 +112,26 @@ uint8_t * LCD_GetBuf()
 #define LCD_CMD_CLEAR   0x01
 #define LCD_CMD_HOME    0x02
 
+int LCD_GetIndex(int x, int y) {
+  return (((2*y)%4) + y/2)*LCD_XMAX + x;
+}
+
 void LCD_Redraw() {
   /* flip buffers, redrawing screen */
   LCD_Command(LCD_CMD_HOME);
   uint8_t * buf = LCD_GetBuf();
-  for (int i = 0; i<LCD_XMAX*LCD_YMAX; i++) {
-    uint8_t c = buf[i];
-    if (c >= ' ' && c <= '}') {
-      c = c;
-    } else {
-      c = ' ';
+  int i;
+  for (int y = 0; y<LCD_YMAX; y++) {
+    for (int x = 0; x<LCD_XMAX; x++) {
+      i = LCD_GetIndex(x,y);
+      uint8_t c = buf[i];
+      if (c >= ' ' && c <= '}') {
+        c = c;
+      } else {
+        c = ' ';
+      }
+      LCD_Write(c);
     }
-    LCD_Write(c);
   }
 }
 

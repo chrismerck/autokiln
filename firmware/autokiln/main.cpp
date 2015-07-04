@@ -17,6 +17,8 @@
 #include "ImageInfo.h"
 #include "LCD.h"
 #include "Input.h"
+#include<cstdio>
+#include<cstdlib>
 
 /*===========================================================================*/
 /* Initialization and main thread.                                           */
@@ -103,6 +105,10 @@ int main(void) {
    * Start Main Application Loop
    */
   SysInfo("System Ready!");
+
+  sprintf((char*)&lcd_buf[LCD_XMAX],  "Wood Kiln Controller");
+  sprintf((char*)&lcd_buf[2*LCD_XMAX]," \"Autokiln\"  v0.1 ");
+  LCD_Redraw();
   
   int i = 0;
   while(1)
