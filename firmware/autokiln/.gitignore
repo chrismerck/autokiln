@@ -1,0 +1,5 @@
+build
+.dep
+.gdbinit
+.openocd.log
+tags

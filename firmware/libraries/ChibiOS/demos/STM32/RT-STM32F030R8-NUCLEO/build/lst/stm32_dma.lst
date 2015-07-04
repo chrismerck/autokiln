@@ -1,0 +1,96 @@
+ARM GAS  /var/folders/fq/ltb3dbq95yq6ljzx21t9gnkc0000gn/T//ccHUMlyP.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 2
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"stm32_dma.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.section	.gnu.lto_.profile.753cd4000c36443,"",%progbits
+  17 0000 789C6366 		.ascii	"x\234cf```d\200\002\000\000=\000\005"
+  17      60606064 
+  17      80020000 
+  17      3D0005
+  18              		.text
+  19              		.section	.gnu.lto_.inline.753cd4000c36443,"",%progbits
+  20 0000 789C6366 		.ascii	"x\234cf\300\016\230\340,\000\000\234\000\006"
+  20      C00E98E0 
+  20      2C00009C 
+  20      0006
+  21              		.text
+  22              		.section	.gnu.lto_.pureconst.753cd4000c36443,"",%progbits
+  23 0000 789C6366 		.ascii	"x\234cf```d\200\002\000\000=\000\005"
+  23      60606064 
+  23      80020000 
+  23      3D0005
+  24              		.text
+  25              		.section	.gnu.lto_.symbol_nodes.753cd4000c36443,"",%progbits
+  26 0000 789C6366 		.ascii	"x\234cf```b\200\001\000\000L\000\006"
+  26      60606062 
+  26      80010000 
+  26      4C0006
+  27              		.text
+  28              		.section	.gnu.lto_.refs.753cd4000c36443,"",%progbits
+  29 0000 789C6366 		.ascii	"x\234cf```d\200\002\000\000=\000\005"
+  29      60606064 
+  29      80020000 
+  29      3D0005
+  30              		.text
+  31              		.section	.gnu.lto_.decls.753cd4000c36443,"",%progbits
+  32 0000 789C6366 		.ascii	"x\234cf``P\001\342\377@\000\244\030\030\2418\200\201"
+  32      60605001 
+  32      E2FF4000 
+  32      A41818A1 
+  32      388081
+  33 0013 000000D0 		.ascii	"\000\000\000\3208\004v"
+  33      380476
+  34              		.text
+  35              		.section	.gnu.lto_.symtab.753cd4000c36443,"",%progbits
+  36              		.text
+  37              		.section	.gnu.lto_.opts,"",%progbits
+ARM GAS  /var/folders/fq/ltb3dbq95yq6ljzx21t9gnkc0000gn/T//ccHUMlyP.s 			page 2
+
+
+  38 0000 272D666E 		.ascii	"'-fno-trapv' '-mcpu=cortex-m0' '-mno-thumb-interwor"
+  38      6F2D7472 
+  38      61707627 
+  38      20272D6D 
+  38      6370753D 
+  39 0033 6B272027 		.ascii	"k' '-mthumb' '-ggdb' '-O2' '-fomit-frame-pointer' '"
+  39      2D6D7468 
+  39      756D6227 
+  39      20272D67 
+  39      67646227 
+  40 0066 2D66616C 		.ascii	"-falign-functions=16' '-ffunction-sections' '-fdata"
+  40      69676E2D 
+  40      66756E63 
+  40      74696F6E 
+  40      733D3136 
+  41 0099 2D736563 		.ascii	"-sections' '-fno-common' '-flto'\000"
+  41      74696F6E 
+  41      73272027 
+  41      2D666E6F 
+  41      2D636F6D 
+  42              		.text
+  43              		.comm	__gnu_lto_v1,1,1
+  44              		.comm	__gnu_lto_slim,1,1
+  45              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  /var/folders/fq/ltb3dbq95yq6ljzx21t9gnkc0000gn/T//ccHUMlyP.s 			page 3
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 stm32_dma.c
+                            *COM*:0000000000000001 __gnu_lto_v1
+                            *COM*:0000000000000001 __gnu_lto_slim
+
+NO UNDEFINED SYMBOLS

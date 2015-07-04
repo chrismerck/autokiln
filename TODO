@@ -1,0 +1,11 @@
+# autokiln TODOs
+
+
+## hardware:
+
+Replace 12/5V regulators with buck converters,
+ or add massive heat sinks...
+
+Add flyback diodes on relay coils
+
+
