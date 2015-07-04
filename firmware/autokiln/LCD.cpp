@@ -68,6 +68,11 @@ void LCD_OutDir() {
   modePin(PPIN_LCD_DB7,PAL_MODE_OUTPUT_PUSHPULL);
 }
 
+void LCD_Timer(void * dummy) {
+  dummy = dummy;
+  LCD_Redraw();
+}
+
 /***
  * PUBLIC METHODS
  ***/
@@ -95,6 +100,8 @@ void LCD_Init() {
   LCD_Command(0x06);
 
   lcd_buf_select = 0;
+
+  //OsCreateTimer(LCD_Timer,NULL,OS_TIMER_PERIODIC,100);
 }
 
 uint8_t * LCD_GetBuf() 

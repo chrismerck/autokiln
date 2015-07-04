@@ -16,6 +16,7 @@
 //#include "RTC.h"
 #include "ImageInfo.h"
 #include "LCD.h"
+#include "Input.h"
 
 /*===========================================================================*/
 /* Initialization and main thread.                                           */
@@ -41,12 +42,9 @@ int main(void) {
 
 
   setPin(PPIN_LCD_BKL_EN);
-  LCD_Init();
   OsSleepMs(500);
   clearPin(PPIN_LCD_BKL_EN);
   OsSleepMs(5000);
-
-  LCD_Test();
 
   SysDefaultDebugLevels();
   SysSetDebugLevels_Project();
@@ -71,6 +69,11 @@ int main(void) {
   OsTimerInit();
 
   /*
+   * LCD Initialization
+   */
+  LCD_Init();
+
+  /*
    * Microcontroller-Internal 
    * Peripheral Initialization
    */
@@ -92,6 +95,11 @@ int main(void) {
 #endif
 
   /*
+   * Tasks
+   */
+  Input_Init();
+
+  /*
    * Start Main Application Loop
    */
   SysInfo("System Ready!");
@@ -100,7 +108,6 @@ int main(void) {
   while(1)
   {
     i++;
-    SysInfo("Loop %d",i);
     OsSleepMs(1000);
   }
 }
