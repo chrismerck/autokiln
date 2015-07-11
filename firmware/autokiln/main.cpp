@@ -25,24 +25,54 @@
 /*===========================================================================*/
 
 int32_t click = 0;
+int32_t enc_delta_isr = 0;
 
-/* Triggered when the button is pressed or released. The LED4 is set to ON.*/
-void extcb1(EXTDriver *extp, expchannel_t channel) {
+#define ENC_STATE_Z   0
+#define ENC_STATE_A   1
+#define ENC_STATE_B   2
+#define ENC_STATE_AB  3
+int32_t enc_state = ENC_STATE_AB;
+bool enc_token = false;
+
+void extcb_enc(EXTDriver *extp, expchannel_t channel) {
   (void)extp;
   (void)channel;
+  int32_t new_enc_state;
   chSysLockFromISR();
   click++;
+  new_enc_state = (readPin(PPIN_ENC_A)) | (readPin(PPIN_ENC_B) << 1);
+  if (new_enc_state != enc_state) {
+    switch (enc_state) {
+      case ENC_STATE_AB:
+        enc_token = true;
+        break;
+      case ENC_STATE_B:
+        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
+          enc_delta_isr++;
+          enc_token = false;
+        }
+        break;
+      case ENC_STATE_A:
+        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
+          enc_delta_isr--;
+          enc_token = false;
+        }
+        break;
+    }
+  }
+  enc_state = new_enc_state;
   chSysUnlockFromISR();
 }
+
 
 static const EXTConfig extcfg = {
   {
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb1}, // PB3 = ENC_A
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb_enc}, // PB3 = ENC_A
     {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb1}, // PB5 = ENC_B
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb_enc}, // PB5 = ENC_B
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},

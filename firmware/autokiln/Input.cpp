@@ -7,10 +7,10 @@
 #include<cstdlib>
 
 int32_t but_click, but_manual, but_menu, but_reset;
-int32_t enc_state, enc_a, enc_b;
 int32_t enc_delta;
+int32_t enc_cnt = 0;
 
-extern int32_t click;
+extern int32_t click, enc_delta_isr;
 
 /**
  * User Input Event Hooks
@@ -58,7 +58,8 @@ void Input_Reset_Up() {
 }
 
 void Input_Encoder(int32_t delta) {
-  sprintf((char*)lcd_buf,"ENC   %9ld",delta);
+  enc_cnt += delta;
+  sprintf((char*)lcd_buf,"ENC   %9ld %ld",delta,enc_cnt);
   LCD_Redraw();
 }
 
@@ -117,6 +118,18 @@ void Input_Task(void * arg) {
     if (event == INPUT_EVENT_DOWN) Input_Click_Down();
     if (event == INPUT_EVENT_UP) Input_Click_Up(); 
 
+    /* read encoder turn from interrupt routine */
+    OsSysLock();
+    if (enc_delta_isr != 0) {
+      enc_delta = enc_delta_isr;
+      enc_delta_isr = 0;
+    }
+    OsSysUnlock();
+    if (enc_delta != 0) { 
+      Input_Encoder(enc_delta);
+      enc_delta = 0;
+    }
+
     sprintf((char*)&lcd_buf[3*LCD_XMAX],"click %ld",click);
     LCD_Redraw();
 
@@ -130,8 +143,8 @@ void Input_Task(void * arg) {
 
 void Input_Init() {
   but_click = but_manual = but_menu = but_reset = 0;
+  enc_delta_isr = 0;
   enc_delta = 0;
-  enc_state = 0;
   OsCreateTask(Input_Task, NULL, OS_PRI_ABOVE_NORMAL, 1024, "Input");
 }
 
