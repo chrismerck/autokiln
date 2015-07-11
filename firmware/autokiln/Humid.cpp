@@ -54,7 +54,16 @@ int32_t Get_T(int32_t sensor) {
   return humid_T[sensor];
 }
 
+#define  RCC_APB1ENR_TIM6EN                  ((uint32_t)0x00000010)        /*!< TIM6 clock enable */
+#define  RCC_APB1ENR_TIM7EN                  ((uint32_t)0x00000020)        /*!< TIM7 clock enable */
+
 void Humid_Init() {
+  /* configure timer */
+  rccEnableAPB1(RCC_APB1ENR_TIM6EN, false);
+  TIM6->PSC = 0xFFFF;
+  TIM6->ARR = 0xFFFF;
+  TIM6->CR1 = TIM_CR1_CEN /*enable*/;
+
   OsCreateTimer(Humid_Timer, NULL, OS_TIMER_PERIODIC, HUMID_READ_PERIOD_MS);
 }
 

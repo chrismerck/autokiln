@@ -139,7 +139,8 @@ void Input_Task(void * arg) {
       enc_delta = 0;
     }
 
-    sprintf((char*)&lcd_buf[3*LCD_XMAX],"click %ld",click);
+    uint32_t t = (TIM6->CNT)/1000;
+    sprintf((char*)&lcd_buf[3*LCD_XMAX],"tim %010ld",t);
     LCD_Redraw();
 
     OsSleepMs(5);
