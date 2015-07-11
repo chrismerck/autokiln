@@ -10,7 +10,16 @@ int32_t but_click, but_manual, but_menu, but_reset;
 int32_t enc_delta;
 int32_t enc_cnt = 0;
 
-extern int32_t click, enc_delta_isr;
+int32_t click = 0;
+int32_t enc_delta_isr = 0;
+
+#define ENC_STATE_Z   0
+#define ENC_STATE_A   1
+#define ENC_STATE_B   2
+#define ENC_STATE_AB  3
+int32_t enc_state = ENC_STATE_AB;
+bool enc_token = false;
+
 
 /**
  * User Input Event Hooks
@@ -137,6 +146,37 @@ void Input_Task(void * arg) {
   }
 }
 
+void extcb_enc(EXTDriver *extp, expchannel_t channel) {
+  (void)extp;
+  (void)channel;
+  int32_t new_enc_state;
+  chSysLockFromISR();
+  click++;
+  new_enc_state = (readPin(PPIN_ENC_A)) | (readPin(PPIN_ENC_B) << 1);
+  if (new_enc_state != enc_state) {
+    switch (enc_state) {
+      case ENC_STATE_AB:
+        enc_token = true;
+        break;
+      case ENC_STATE_B:
+        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
+          enc_delta_isr++;
+          enc_token = false;
+        }
+        break;
+      case ENC_STATE_A:
+        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
+          enc_delta_isr--;
+          enc_token = false;
+        }
+        break;
+    }
+  }
+  enc_state = new_enc_state;
+  chSysUnlockFromISR();
+}
+
+
 /***
  * PUBLIC INTERFACE
  ***/
@@ -146,6 +186,7 @@ void Input_Init() {
   enc_delta_isr = 0;
   enc_delta = 0;
   OsCreateTask(Input_Task, NULL, OS_PRI_ABOVE_NORMAL, 1024, "Input");
+
 }
 
 

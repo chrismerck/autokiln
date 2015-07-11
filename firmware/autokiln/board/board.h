@@ -181,14 +181,14 @@
                                      PIN_MODE_INPUT((PIN_LCD_DB5)) |          \
                                      PIN_MODE_INPUT((PIN_LCD_DB6)) |          \
                                      PIN_MODE_INPUT((PIN_LCD_DB7)) |          \
-                                     PIN_MODE_INPUT((PIN_HUMID_DATA1)) |      \
+                                     PIN_MODE_OUTPUT((PIN_HUMID_DATA1)) |      \
                                      PIN_MODE_INPUT((PIN_BAROM_SDA)) |        \
                                      PIN_MODE_INPUT((PIN_BAROM_SCL)) |        \
                                      PIN_MODE_INPUT((PIN_ADC_A1)) |           \
                                      PIN_MODE_INPUT((PIN_ADC_A0)) |           \
                                      PIN_MODE_INPUT((PIN_SWDIO)) |            \
                                      PIN_MODE_INPUT((PIN_SWCLK)) |            \
-                                     PIN_MODE_INPUT((PIN_HUMID_DATA2)))
+                                     PIN_MODE_OUTPUT((PIN_HUMID_DATA2)))
 #define VAL_GPIOA_OTYPER            (PIN_OTYPE_PUSHPULL((PIN_LCD_RS)) |       \
                                      PIN_OTYPE_PUSHPULL((PIN_LCD_RW)) |       \
                                      PIN_OTYPE_PUSHPULL((PIN_LCD_E)) |        \
@@ -197,14 +197,14 @@
                                      PIN_OTYPE_PUSHPULL((PIN_LCD_DB5)) |      \
                                      PIN_OTYPE_PUSHPULL((PIN_LCD_DB6)) |      \
                                      PIN_OTYPE_PUSHPULL((PIN_LCD_DB7)) |      \
-                                     PIN_OTYPE_PUSHPULL((PIN_HUMID_DATA1)) |  \
+                                     PIN_OTYPE_OPENDRAIN((PIN_HUMID_DATA1)) |  \
                                      PIN_OTYPE_PUSHPULL((PIN_BAROM_SDA)) |    \
                                      PIN_OTYPE_PUSHPULL((PIN_BAROM_SCL)) |    \
                                      PIN_OTYPE_PUSHPULL((PIN_ADC_A1)) |       \
                                      PIN_OTYPE_PUSHPULL((PIN_ADC_A0)) |       \
                                      PIN_OTYPE_PUSHPULL((PIN_SWDIO)) |        \
                                      PIN_OTYPE_PUSHPULL((PIN_SWCLK)) |        \
-                                     PIN_OTYPE_PUSHPULL((PIN_HUMID_DATA2)))
+                                     PIN_OTYPE_OPENDRAIN((PIN_HUMID_DATA2)))
 #define VAL_GPIOA_OSPEEDR           (PIN_OSPEED_40M((PIN_LCD_RS)) |           \
                                      PIN_OSPEED_40M((PIN_LCD_RW)) |           \
                                      PIN_OSPEED_40M((PIN_LCD_E)) |            \

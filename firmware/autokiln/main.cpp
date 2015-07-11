@@ -17,6 +17,7 @@
 #include "ImageInfo.h"
 #include "LCD.h"
 #include "Input.h"
+#include "Humid.h"
 #include<cstdio>
 #include<cstdlib>
 
@@ -24,46 +25,12 @@
 /* Initialization and main thread.                                           */
 /*===========================================================================*/
 
-int32_t click = 0;
-int32_t enc_delta_isr = 0;
+/*
+ * Interrupt Configuration
+ */
 
-#define ENC_STATE_Z   0
-#define ENC_STATE_A   1
-#define ENC_STATE_B   2
-#define ENC_STATE_AB  3
-int32_t enc_state = ENC_STATE_AB;
-bool enc_token = false;
-
-void extcb_enc(EXTDriver *extp, expchannel_t channel) {
-  (void)extp;
-  (void)channel;
-  int32_t new_enc_state;
-  chSysLockFromISR();
-  click++;
-  new_enc_state = (readPin(PPIN_ENC_A)) | (readPin(PPIN_ENC_B) << 1);
-  if (new_enc_state != enc_state) {
-    switch (enc_state) {
-      case ENC_STATE_AB:
-        enc_token = true;
-        break;
-      case ENC_STATE_B:
-        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
-          enc_delta_isr++;
-          enc_token = false;
-        }
-        break;
-      case ENC_STATE_A:
-        if (enc_token && (new_enc_state == ENC_STATE_Z)) {
-          enc_delta_isr--;
-          enc_token = false;
-        }
-        break;
-    }
-  }
-  enc_state = new_enc_state;
-  chSysUnlockFromISR();
-}
-
+extern void extcb_enc(EXTDriver *extp, expchannel_t channel);
+extern void extcb_humid(EXTDriver *extp, expchannel_t channel);
 
 static const EXTConfig extcfg = {
   {
@@ -75,14 +42,14 @@ static const EXTConfig extcfg = {
     {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb_enc}, // PB5 = ENC_B
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, extcb_humid}, // PA8 = HUMID_DATA1
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOA, extcb_humid}, // PA15 = HUMID_DATA2
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
@@ -116,11 +83,6 @@ int main(void) {
    * Activates the EXT driver 1.
    */
   extStart(&EXTD1, &extcfg);
-
-  setPin(PPIN_LCD_BKL_EN);
-  OsSleepMs(500);
-  clearPin(PPIN_LCD_BKL_EN);
-  OsSleepMs(5000);
 
   SysDefaultDebugLevels();
   SysSetDebugLevels_Project();
@@ -174,6 +136,7 @@ int main(void) {
    * Tasks
    */
   Input_Init();
+  Humid_Init();
 
   /*
    * Start Main Application Loop

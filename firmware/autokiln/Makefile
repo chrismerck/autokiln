@@ -122,8 +122,8 @@ CPPSRC = $(CHCPPSRC) \
 				 $(PROJLIBS)/DbgConsole/DbgConsole.cpp \
 				 DbgConsole_Project.cpp \
 				 LCD.cpp \
-				 Input.cpp
-#				 RTC.cpp
+				 Input.cpp \
+				 Humid.cpp
 
 # C sources to be compiled in ARM mode regardless of the global setting.
 # NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler
