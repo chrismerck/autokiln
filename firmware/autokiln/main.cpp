@@ -24,6 +24,46 @@
 /* Initialization and main thread.                                           */
 /*===========================================================================*/
 
+int32_t click = 0;
+
+/* Triggered when the button is pressed or released. The LED4 is set to ON.*/
+void extcb1(EXTDriver *extp, expchannel_t channel) {
+  (void)extp;
+  (void)channel;
+  chSysLockFromISR();
+  click++;
+  chSysUnlockFromISR();
+}
+
+static const EXTConfig extcfg = {
+  {
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb1}, // PB3 = ENC_A
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_BOTH_EDGES | EXT_CH_MODE_AUTOSTART | EXT_MODE_GPIOB, extcb1}, // PB5 = ENC_B
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL}
+  }
+};
+
+
 
 /*
  * Application entry point.
@@ -42,6 +82,10 @@ int main(void) {
   halInit();
   chSysInit();
 
+  /*
+   * Activates the EXT driver 1.
+   */
+  extStart(&EXTD1, &extcfg);
 
   setPin(PPIN_LCD_BKL_EN);
   OsSleepMs(500);
