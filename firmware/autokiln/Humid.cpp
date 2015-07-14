@@ -102,8 +102,7 @@ static void Humid_Timer_CB(void* arg) {
   while (true) {
     Humid_ISR_Loop();
     if (TIM6->CNT > HUMID_TIMEOUT) break;
-    if (humid_bit[0] == HUMID_DATA_BYTES*8 + 1) break;
-    if (humid_bit[1] == HUMID_DATA_BYTES*8 + 1) break;
+    if ((humid_bit[0] == HUMID_DATA_BYTES*8 + 1) && (humid_bit[1] == HUMID_DATA_BYTES*8 + 1)) break;
   }
 
   chSysUnlockFromISR();
@@ -150,6 +149,6 @@ void Humid_Init() {
   TIM6->ARR = 0xFFFF;
   TIM6->CR1 = TIM_CR1_CEN /*enable*/;
 
-  OsCreateTimer(Humid_Timer, NULL, OS_TIMER_ONESHOT, HUMID_READ_PERIOD_MS);
+  OsCreateTimer(Humid_Timer, NULL, OS_TIMER_PERIODIC, HUMID_READ_PERIOD_MS);
 }
 

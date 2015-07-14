@@ -147,9 +147,15 @@ void Input_Task(void * arg) {
       enc_delta = 0;
     }
 
-    sprintf((char*)&lcd_buf[1*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
+    sprintf((char*)&lcd_buf[0*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
         humid_RH[0]/10, humid_RH[0]%10,
         humid_T[0]/10, humid_T[0]%10
+        );
+
+
+    sprintf((char*)&lcd_buf[1*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
+        humid_RH[1]/10, humid_RH[1]%10,
+        humid_T[1]/10, humid_T[1]%10
         );
 
     /*
