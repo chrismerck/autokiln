@@ -31,13 +31,19 @@ int16_t isr_max_time = 0;
 
 #define HUMID_NEG_BIT_MASK ((uint8_t)0x80)
 
-void extcb_humid(EXTDriver *extp, expchannel_t channel) {
-  (void)extp;
-  (void)channel;
+static void Humid_Reset_ISR_State() {
+  int i;
+  for (i=0;i<HUMID_NUM_SENSORS;i++) {
+    humid_bit[i] = -2;
+    humid_pin[i] = false;
+    humid_cnt[i] = 0;
+    OsZero((void*)humid_data[i],HUMID_DATA_BYTES);
+  }
+}
+
+static void Humid_ISR_Loop() {
   bool new_humid_pin[HUMID_NUM_SENSORS];
   int16_t pulse_len;
-  int16_t isr_start_time = TIM6->CNT;
-  chSysLockFromISR();
   new_humid_pin[0] = readPin(PPIN_HUMID_DATA1);
   new_humid_pin[1] = readPin(PPIN_HUMID_DATA2);
   for (int i=0; i<2; i++) {
@@ -67,7 +73,7 @@ void extcb_humid(EXTDriver *extp, expchannel_t channel) {
           pulse_len = TIM6->CNT - humid_cnt[i];
           pulse_lens[humid_bit[i]] = pulse_len;
           /* add bit to humid_data, msb first */
-          humid_data[i][humid_bit[i]/8] |= ((pulse_len>50?1:0) << (8-(humid_bit[i]%8)));
+          humid_data[i][humid_bit[i]/8] |= ((pulse_len>50?1:0) << (7-(humid_bit[i]%8)));
         } else {
           /* ignore first bit, which is just ACK */
         }
@@ -76,20 +82,9 @@ void extcb_humid(EXTDriver *extp, expchannel_t channel) {
     }
     humid_pin[i] = new_humid_pin[i];
   }
-  int16_t isr_run_time = TIM6->CNT - isr_start_time;
-  isr_max_time = (isr_run_time > isr_max_time)?isr_run_time:isr_max_time;
-  chSysUnlockFromISR();
 }
 
-static void Humid_Reset_ISR_State() {
-  int i;
-  for (i=0;i<HUMID_NUM_SENSORS;i++) {
-    humid_bit[i] = -1;
-    humid_pin[i] = false;
-    humid_cnt[i] = 0;
-    OsZero((void*)humid_data[i],HUMID_DATA_BYTES);
-  }
-}
+#define HUMID_TIMEOUT 10000 // 10ms timeout
 
 static void Humid_Timer_CB(void* arg) {
   (void) arg;
@@ -99,6 +94,18 @@ static void Humid_Timer_CB(void* arg) {
   Humid_Reset_ISR_State();
   setPin(PPIN_HUMID_DATA1);
   setPin(PPIN_HUMID_DATA2);
+
+  /* 
+   * read sensor response in busy loop with interrupts disabled
+   * (Interrupts didn't work as the response is too fast.)
+   */
+  while (true) {
+    Humid_ISR_Loop();
+    if (TIM6->CNT > HUMID_TIMEOUT) break;
+    if (humid_bit[0] == HUMID_DATA_BYTES*8 + 1) break;
+    if (humid_bit[1] == HUMID_DATA_BYTES*8 + 1) break;
+  }
+
   chSysUnlockFromISR();
 }
 

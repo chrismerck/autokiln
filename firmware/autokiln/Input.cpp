@@ -147,11 +147,12 @@ void Input_Task(void * arg) {
       enc_delta = 0;
     }
 
-    /*sprintf((char*)&lcd_buf[1*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
+    sprintf((char*)&lcd_buf[1*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
         humid_RH[0]/10, humid_RH[0]%10,
         humid_T[0]/10, humid_T[0]%10
-        );*/
+        );
 
+    /*
     sprintf((char*)&lcd_buf[0*LCD_XMAX],
         "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d ISR %d us",
         pulse_lens[0],
@@ -171,6 +172,7 @@ void Input_Task(void * arg) {
         pulse_lens[14],
         pulse_lens[15],
         isr_max_time);
+        */
 
     sprintf((char*)&lcd_buf[3*LCD_XMAX],"hum %02X%02X %02X%02X %02X b%02lX",
         humid_data[0][0],
