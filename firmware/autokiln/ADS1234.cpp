@@ -2,6 +2,18 @@
 #include "hal.h"
 #include "Os.h"
 
+/*
+ * TODO:
+ *  
+ *   Make ISR triggered on falling edge of DOUT
+ *     round-robin between four channels,
+ *     saving to state variables
+ *
+ *   write getter function
+ *
+ */
+
+
 /* 
  * project-specific functions
  */
