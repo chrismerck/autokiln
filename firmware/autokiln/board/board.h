@@ -184,8 +184,8 @@
                                      PIN_MODE_OUTPUT((PIN_HUMID_DATA1)) |      \
                                      PIN_MODE_INPUT((PIN_BAROM_SDA)) |        \
                                      PIN_MODE_INPUT((PIN_BAROM_SCL)) |        \
-                                     PIN_MODE_INPUT((PIN_ADC_A1)) |           \
-                                     PIN_MODE_INPUT((PIN_ADC_A0)) |           \
+                                     PIN_MODE_OUTPUT((PIN_ADC_A1)) |           \
+                                     PIN_MODE_OUTPUT((PIN_ADC_A0)) |           \
                                      PIN_MODE_INPUT((PIN_SWDIO)) |            \
                                      PIN_MODE_INPUT((PIN_SWCLK)) |            \
                                      PIN_MODE_OUTPUT((PIN_HUMID_DATA2)))
@@ -291,7 +291,7 @@
  */
 
 #define VAL_GPIOB_MODER             (PIN_MODE_INPUT((PIN_ADC_DOUT)) |           \
-                                     PIN_MODE_INPUT((PIN_ADC_SCLK)) |           \
+                                     PIN_MODE_OUTPUT((PIN_ADC_SCLK)) |           \
                                      PIN_MODE_INPUT((PIN_ENC_CLICK)) |          \
                                      PIN_MODE_INPUT((PIN_ENC_A)) |              \
                                      PIN_MODE_INPUT((PIN_TRST)) |               \
@@ -300,7 +300,7 @@
                                      PIN_MODE_ALTERNATE((PIN_DBG_RX)) |         \
                                      PIN_MODE_ALTERNATE((PIN_SCL)) |            \
                                      PIN_MODE_ALTERNATE((PIN_SDA)) |            \
-                                     PIN_MODE_INPUT((PIN_ADC_PDWN)) |           \
+                                     PIN_MODE_OUTPUT((PIN_ADC_PDWN)) |           \
                                      PIN_MODE_OUTPUT((PIN_STEAM)) |             \
                                      PIN_MODE_OUTPUT((PIN_VACUUM)) |            \
                                      PIN_MODE_OUTPUT((PIN_FAN)) |               \

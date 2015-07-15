@@ -18,6 +18,8 @@
 #include "LCD.h"
 #include "Input.h"
 #include "Humid.h"
+#include "ADS1234.h"
+
 #include<cstdio>
 #include<cstdlib>
 
@@ -132,11 +134,13 @@ int main(void) {
   CreateUart();
 #endif
 
+
   /*
    * Tasks
    */
   Input_Init();
   Humid_Init();
+  ADS1234_Init(); /* weigh scale */
 
   /*
    * Start Main Application Loop
