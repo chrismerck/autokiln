@@ -256,7 +256,7 @@
 #define VAL_GPIOA_AFRL              (PIN_AFIO_AF((PIN_LCD_RS), 0) |           \
                                      PIN_AFIO_AF((PIN_LCD_RW), 0) |           \
                                      PIN_AFIO_AF((PIN_LCD_E), 0) |            \
-                                     PIN_AFIO_AF((PIN_LCD_BKL_EN), 0) |       \
+                                     PIN_AFIO_AF((PIN_LCD_BKL_EN), PAL_MODE_ALTERNATE(0)) |       \
                                      PIN_AFIO_AF((PIN_LCD_DB4), 0) |          \
                                      PIN_AFIO_AF((PIN_LCD_DB5), 0) |          \
                                      PIN_AFIO_AF((PIN_LCD_DB6), 0) |          \

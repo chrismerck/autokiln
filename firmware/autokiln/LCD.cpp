@@ -77,7 +77,77 @@ void LCD_Timer(void * dummy) {
  * PUBLIC METHODS
  ***/
 
+#define LCD_BACKLIGHT_MAX 0x1000
+uint32_t lcd_bright = 0;
+uint32_t lcd_bright_target = LCD_BACKLIGHT_MAX;
+#define LCD_BRIGHT_STEP_UP    0x100
+#define LCD_BRIGHT_STEP_DOWN  0x08
+
+void LCD_Backlight_Init() {
+  // setup PWM output
+
+  /* configure timer */
+  rccEnableAPB2(RCC_APB2ENR_TIM15EN, false);
+  TIM15->PSC = 0x0024; /* 1us ticks */
+  TIM15->ARR = LCD_BACKLIGHT_MAX;
+  TIM15->CCR2 = 0;
+  TIM15->CR1 = TIM_CR1_CEN;
+  TIM15->CCMR1 = (TIM15->CCMR1 & ~TIM_CCMR1_OC2M) | (TIM_CCMR1_OC2M_1 | TIM_CCMR1_OC2M_2);
+  TIM15->CCMR1 |= TIM_CCMR1_OC2PE;
+  TIM15->CR1 |= TIM_CR1_ARPE;
+  TIM15->CCER |= TIM_CCER_CC2E;
+  TIM15->BDTR |= TIM_BDTR_MOE;
+  TIM15->CR1 |= TIM_CR1_CMS_0 | TIM_CR1_CEN;
+  TIM15->EGR |= TIM_EGR_UG;
+
+  palSetPadMode(GPIOA,3,PAL_MODE_ALTERNATE(0));
+
+}
+
+static int32_t lcd_backlight_timer = 0;
+
+#define LCD_BACKLIGHT_WAKETIME 10000 // ticks (~5ms)
+#define LCD_BACKLIGHT_WARNTIME 2000 // ticks
+
+void LCD_Backlight_Wake() {
+  lcd_bright_target = LCD_BACKLIGHT_MAX;
+  lcd_backlight_timer = LCD_BACKLIGHT_WAKETIME;
+}
+
+void LCD_Backlight_Tick() {
+  /* put backlight to sleep after a time */
+  if (lcd_backlight_timer > 0) {
+    lcd_backlight_timer--;
+    if (lcd_backlight_timer == LCD_BACKLIGHT_WARNTIME) {
+      lcd_bright_target = LCD_BACKLIGHT_MAX/2;
+    }
+    if (lcd_backlight_timer == 0) {
+      lcd_bright_target = 0;
+    }
+  }
+
+  /* move brightness towards target */
+  if (lcd_bright_target > lcd_bright) {
+    lcd_bright += LCD_BRIGHT_STEP_UP;
+    if (lcd_bright > lcd_bright_target) lcd_bright = lcd_bright_target;
+    LCD_Backlight_Set(lcd_bright);
+  }
+  else if (lcd_bright_target < lcd_bright) {
+    lcd_bright -= LCD_BRIGHT_STEP_DOWN;
+    if (lcd_bright < lcd_bright_target) lcd_bright = lcd_bright_target;
+    LCD_Backlight_Set(lcd_bright);
+  }
+}
+
+void LCD_Backlight_Set(uint16_t brightness) {
+  TIM15->CCR2 = brightness;
+  TIM15->EGR |= TIM_EGR_UG;
+}
+
 void LCD_Init() {
+  LCD_Backlight_Init();
+  LCD_Backlight_Set(0xFFFF);
+
   OsZero((void*) LCD_GetBuf(),LCD_XMAX*LCD_YMAX);
   LCD_OutDir();
   clearPin(PPIN_LCD_RS);

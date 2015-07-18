@@ -35,9 +35,16 @@ MenuBase::MenuBase() {
 MenuMain::MenuMain() {
 }
 
+
 void MenuMain::Input(input_type_t type, int32_t arg) {
   (void) type;
   (void) arg;
+  switch (type) {
+    case INPUT_TYPE_ENCODER:
+      break;
+    default:
+      break;
+  }
   need_redraw = true;
 }
 
@@ -60,7 +67,7 @@ void MenuMain::Redraw() {
       mc_delta/10, abs_i32(mc_delta)%10);
 
   sprintf((char*)&lcd_buf[2*LCD_XMAX],
-      "E %3ldF%3ld%% MODE AUTO",
+      "E %3ldF%3ld%% MODE xxx",
       humid_T[1]/10, humid_RH[1]/10);
 
   sprintf((char*)&lcd_buf[3*LCD_XMAX],

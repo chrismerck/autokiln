@@ -7,8 +7,6 @@
 #include<cstdio>
 #include<cstdlib>
 
-
-
 int32_t but_click, but_manual, but_menu, but_reset;
 int32_t enc_delta;
 int32_t enc_cnt = 0;
@@ -31,38 +29,47 @@ bool enc_token = false;
 
 void Input_Click_Down() {
   g_pCurrentMenu->Input(INPUT_TYPE_CLICK,INPUT_EVENT_DOWN);
+  LCD_Backlight_Wake();
 }
 
 void Input_Click_Up() {
   g_pCurrentMenu->Input(INPUT_TYPE_CLICK,INPUT_EVENT_UP);
+  LCD_Backlight_Wake();
 }
 
 void Input_Manual_Down() {
   g_pCurrentMenu->Input(INPUT_TYPE_MANUAL,INPUT_EVENT_DOWN);
+  LCD_Backlight_Wake();
 }
 
 void Input_Manual_Up() {
   g_pCurrentMenu->Input(INPUT_TYPE_MANUAL,INPUT_EVENT_UP);
+  LCD_Backlight_Wake();
 }
 
 void Input_Menu_Down() {
   g_pCurrentMenu->Input(INPUT_TYPE_MENU,INPUT_EVENT_DOWN);
+  LCD_Backlight_Wake();
 }
 
 void Input_Menu_Up() {
   g_pCurrentMenu->Input(INPUT_TYPE_MENU,INPUT_EVENT_UP);
+  LCD_Backlight_Wake();
 }
 
 void Input_Reset_Down() {
   g_pCurrentMenu->Input(INPUT_TYPE_RESET,INPUT_EVENT_DOWN);
+  LCD_Backlight_Wake();
 }
 
 void Input_Reset_Up() {
   g_pCurrentMenu->Input(INPUT_TYPE_RESET,INPUT_EVENT_UP);
+  LCD_Backlight_Wake();
 }
 
 void Input_Encoder(int32_t delta) {
   g_pCurrentMenu->Input(INPUT_TYPE_ENCODER,delta);
+  LCD_Backlight_Wake();
 }
 
 /**
@@ -133,6 +140,8 @@ void Input_Task(void * arg) {
     if (g_pCurrentMenu->Need_Redraw()) {
       g_pCurrentMenu->Redraw();
     }
+
+    LCD_Backlight_Tick();
 
     OsSleepMs(5);
   }
