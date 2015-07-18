@@ -19,7 +19,7 @@
 #include "Input.h"
 #include "Humid.h"
 #include "ADS1234.h"
-
+#include "Menu.h"
 #include<cstdio>
 #include<cstdlib>
 
@@ -134,10 +134,14 @@ int main(void) {
   CreateUart();
 #endif
 
+  sprintf((char*)&lcd_buf[LCD_XMAX],  "Wood Kiln Controller");
+  sprintf((char*)&lcd_buf[2*LCD_XMAX]," \"Autokiln\"  v0.1 ");
+  LCD_Redraw();
 
   /*
    * Tasks
    */
+  Menu_Init();
   Input_Init();
   Humid_Init();
   ADS1234_Init(); /* weigh scale */
@@ -147,10 +151,6 @@ int main(void) {
    */
   SysInfo("System Ready!");
 
-  sprintf((char*)&lcd_buf[LCD_XMAX],  "Wood Kiln Controller");
-  sprintf((char*)&lcd_buf[2*LCD_XMAX]," \"Autokiln\"  v0.1 ");
-  LCD_Redraw();
-  
   int i = 0;
   while(1)
   {

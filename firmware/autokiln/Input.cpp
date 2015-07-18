@@ -3,16 +3,11 @@
 #include "Input.h"
 #include "LCD.h"
 #include "Os.h"
+#include "Menu.h"
 #include<cstdio>
 #include<cstdlib>
 
-#include"Humid.h"
 
-extern int16_t isr_max_time;
-extern uint8_t humid_data[2][5];
-extern int32_t humid_bit[2];
-extern int16_t pulse_len;
-extern int16_t pulse_lens[5*8];
 
 int32_t but_click, but_manual, but_menu, but_reset;
 int32_t enc_delta;
@@ -35,59 +30,44 @@ bool enc_token = false;
  **/
 
 void Input_Click_Down() {
-  sprintf((char*)lcd_buf,"CLICK DOWN     ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_CLICK,INPUT_EVENT_DOWN);
 }
 
 void Input_Click_Up() {
-  sprintf((char*)lcd_buf,"CLICK UP       ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_CLICK,INPUT_EVENT_UP);
 }
 
 void Input_Manual_Down() {
-  sprintf((char*)lcd_buf,"MANUAL DOWN    ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_MANUAL,INPUT_EVENT_DOWN);
 }
 
 void Input_Manual_Up() {
-  sprintf((char*)lcd_buf,"MANUAL UP      ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_MANUAL,INPUT_EVENT_UP);
 }
 
 void Input_Menu_Down() {
-  sprintf((char*)lcd_buf,"MENU  DOWN     ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_MENU,INPUT_EVENT_DOWN);
 }
 
 void Input_Menu_Up() {
-  sprintf((char*)lcd_buf,"MENU  UP       ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_MENU,INPUT_EVENT_UP);
 }
 
 void Input_Reset_Down() {
-  sprintf((char*)lcd_buf,"RESET DOWN     ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_RESET,INPUT_EVENT_DOWN);
 }
 
 void Input_Reset_Up() {
-  sprintf((char*)lcd_buf,"RESET UP       ");
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_RESET,INPUT_EVENT_UP);
 }
 
 void Input_Encoder(int32_t delta) {
-  enc_cnt += delta;
-  sprintf((char*)lcd_buf,"ENC   %9ld %ld",delta,enc_cnt);
-  LCD_Redraw();
+  g_pCurrentMenu->Input(INPUT_TYPE_ENCODER,delta);
 }
 
 /**
  * Private Task
  ***/
-
-#define INPUT_EVENT_DOWN   1
-#define INPUT_EVENT_UP    -1
-#define INPUT_EVENT_NONE   0
-
 #define INPUT_STATE_UP  0
 #define INPUT_STATE_WAIT_DOWN  1
 #define INPUT_STATE_DOWN  2
@@ -122,6 +102,8 @@ void Input_Task(void * arg) {
   arg = arg;
   int32_t event;
   while (true) {
+
+    /* check for button presses */
     event = Input_Debounce(!readPin(PPIN_MENU), &but_menu);
     if (event == INPUT_EVENT_DOWN) Input_Menu_Down();
     if (event == INPUT_EVENT_UP) Input_Menu_Up(); 
@@ -147,49 +129,10 @@ void Input_Task(void * arg) {
       enc_delta = 0;
     }
 
-    sprintf((char*)&lcd_buf[0*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
-        humid_RH[0]/10, humid_RH[0]%10,
-        humid_T[0]/10, humid_T[0]%10
-        );
-
-
-    sprintf((char*)&lcd_buf[1*LCD_XMAX],"RH %3ld.%ld%%  T %3ld.%ldC",
-        humid_RH[1]/10, humid_RH[1]%10,
-        humid_T[1]/10, humid_T[1]%10
-        );
-
-    /*
-    sprintf((char*)&lcd_buf[0*LCD_XMAX],
-        "%d %d %d %d %d %d %d %d %d %d %d %d %d %d %d %d ISR %d us",
-        pulse_lens[0],
-        pulse_lens[1],
-        pulse_lens[2],
-        pulse_lens[3],
-        pulse_lens[4],
-        pulse_lens[5],
-        pulse_lens[6],
-        pulse_lens[7],
-        pulse_lens[8 ],
-        pulse_lens[9 ],
-        pulse_lens[10],
-        pulse_lens[11],
-        pulse_lens[12],
-        pulse_lens[13],
-        pulse_lens[14],
-        pulse_lens[15],
-        isr_max_time);
-        */
-
-    sprintf((char*)&lcd_buf[3*LCD_XMAX],"hum %02X%02X %02X%02X %02X b%02lX",
-        humid_data[0][0],
-        humid_data[0][1],
-        humid_data[0][2],
-        humid_data[0][3],
-        humid_data[0][4],
-        humid_bit[0]
-        );
-
-    LCD_Redraw();
+    /* redraw screen if needed */
+    if (g_pCurrentMenu->Need_Redraw()) {
+      g_pCurrentMenu->Redraw();
+    }
 
     OsSleepMs(5);
   }
