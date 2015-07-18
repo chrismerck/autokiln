@@ -126,7 +126,8 @@ CPPSRC = $(CHCPPSRC) \
 				 Humid.cpp \
 				 ADS1234.cpp \
 				 Menu.cpp \
-				 NV.cpp
+				 NV.cpp \
+				 RTC.cpp
 
 # C sources to be compiled in ARM mode regardless of the global setting.
 # NOTE: Mixing ARM and THUMB mode enables the -mthumb-interwork compiler

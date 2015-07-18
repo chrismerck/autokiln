@@ -13,7 +13,7 @@
 #include "stdio.h"
 #include "EEPROM.h"
 #include "I2C.h"
-//#include "RTC.h"
+#include "RTC.h"
 #include "ImageInfo.h"
 #include "LCD.h"
 #include "Input.h"
@@ -53,10 +53,10 @@ static const EXTConfig extcfg = {
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL}, // 17
     {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_DISABLED, NULL},
-    {EXT_CH_MODE_DISABLED, NULL},
+    {EXT_CH_MODE_DISABLED, NULL}, // 19
+    {EXT_CH_MODE_DISABLED, NULL}, // 20
     {EXT_CH_MODE_DISABLED, NULL},
     {EXT_CH_MODE_DISABLED, NULL}
   }
@@ -119,8 +119,6 @@ int main(void) {
    */
   SysInfo("Starting I2C...");
   I2C_Init();
-  //SysInfo("Starting RTC...");
-  //RTC_Init();
 
   /*
    * Chip Driver Initialization
@@ -137,6 +135,9 @@ int main(void) {
   sprintf((char*)&lcd_buf[LCD_XMAX],  "Wood Kiln Controller");
   sprintf((char*)&lcd_buf[2*LCD_XMAX]," \"Autokiln\"  v0.1 ");
   LCD_Redraw();
+
+  SysInfo("Starting RTC...");
+  RTC_Init();
 
   /*
    * Tasks

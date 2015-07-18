@@ -7,6 +7,7 @@
 #include "NV.h"
 #include<cstdio>
 #include<cstdlib>
+#include"RTC.h"
 
 MenuBase * g_pCurrentMenu;
 MenuMain * g_pMenuMain;
@@ -143,10 +144,14 @@ void MenuHist::Redraw() {
   sprintf((char*)&lcd_buf[0*LCD_XMAX],
       "HIST");
 
+  /*
   sprintf((char*)&lcd_buf[1*LCD_XMAX],
       "CW%5ld CM %02ld.%1ld %2ld.%ld",
       weight_curr/10, mc_curr/10, mc_curr%10, 
       mc_delta/10, abs_i32(mc_delta)%10);
+      */
+  sprintf((char*)&lcd_buf[1*LCD_XMAX],
+      "TIME %ld", RTC_GetTime());
 
   sprintf((char*)&lcd_buf[2*LCD_XMAX],
       "E %3ldF%3ld%% MODE xxx",

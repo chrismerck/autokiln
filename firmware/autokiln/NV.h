@@ -24,9 +24,12 @@ struct NVInfoItem {
 };
 
 enum nv_param_t {
-  NV_PARAM_MC24H = 0,
-  NV_PARAM_DH_MIN_REST_TIME,
-  NV_PARAM_DH_MIN_RUN_TIME,
+  NV_PARAM_AUTO = 0,
+  NV_PARAM_MC24H,
+  NV_PARAM_FORCE_VENT_TEMP,
+  NV_PARAM_FORCE_HEAT_TEMP,
+  NV_PARAM_STATE_DWELL_TIME,
+  NV_PARAM_SCALE_TARE,
   NV_PARAM_LC1_OFFSET,
   NV_PARAM_LC1_SCALE,
   NV_PARAM_LC2_OFFSET,
@@ -39,9 +42,12 @@ enum nv_param_t {
 };
 
 const NVInfoItem NVInfo[] = {
-  {NV_TYPE_FIX10,   "TARGET 24H MC CHANGE", "\%",         -20}, 
-  {NV_TYPE_INT,     "DEHUM MIN REST TIME",  "sec",        60}, 
-  {NV_TYPE_INT,     "DEHUM MIN RUN TIME",   "sec",        60}, 
+  {NV_TYPE_BOOL,    "AUTO MC MODE",         "",           0}, 
+  {NV_TYPE_FIX10,   "AUTO 24H MC CHANGE",   "\%",         -20}, 
+  {NV_TYPE_INT,     "FORCE VENT TEMP",      "F",          105}, 
+  {NV_TYPE_INT,     "FORCE HEAT TEMP",      "F",          60}, 
+  {NV_TYPE_INT,     "STATE DWELL TIME",     "sec",        60}, 
+  {NV_TYPE_FIX10,   "SCALE TARE",           "lbs",        0}, 
   {NV_TYPE_FIX1000, "LOAD CELL 1 OFFSET",   "mV",         0}, 
   {NV_TYPE_FIX1000, "LOAD CELL 1 SCALE",    "mV/FS",      15000}, 
   {NV_TYPE_FIX1000, "LOAD CELL 2 OFFSET",   "mV",         0}, 
