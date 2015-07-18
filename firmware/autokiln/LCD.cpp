@@ -186,6 +186,17 @@ int LCD_GetIndex(int x, int y) {
   return (((2*y)%4) + y/2)*LCD_XMAX + x;
 }
 
+static int32_t lcd_cursor_x = 0;
+static int32_t lcd_cursor_y = 0;
+
+void LCD_SetCursor(int32_t x, int32_t y) {
+  if (x>=0 && x<LCD_XMAX && y>=0 && y<LCD_YMAX) {
+    LCD_Command(0x80 | (x + ((2*y%4) + y/2)*LCD_XMAX));
+    lcd_cursor_x = x;
+    lcd_cursor_y = y;
+  }
+}
+
 void LCD_Redraw() {
   /* flip buffers, redrawing screen */
   LCD_Command(LCD_CMD_HOME);
@@ -203,6 +214,12 @@ void LCD_Redraw() {
       LCD_Write(c);
     }
   }
+  // restore saved cursor position
+  LCD_SetCursor(lcd_cursor_x,lcd_cursor_y);
+}
+
+void LCD_ClearBuffer() {
+  OsZero((void*)LCD_GetBuf(), LCD_XMAX*LCD_YMAX);
 }
 
 void LCD_Test() {

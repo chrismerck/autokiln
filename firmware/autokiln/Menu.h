@@ -26,4 +26,23 @@ public:
   void Redraw();
 };
 
+
+class MenuHist : public MenuBase {
+public:
+  MenuHist();
+  void Input(input_type_t type, int32_t arg);
+  void Redraw();
+};
+
+
+class MenuConfig : public MenuBase {
+public:
+  MenuConfig();
+  void Input(input_type_t type, int32_t arg);
+  void Redraw();
+private:
+  int32_t item = 0;
+  int32_t pos = 0;
+};
+
 #endif // __MENU_H__

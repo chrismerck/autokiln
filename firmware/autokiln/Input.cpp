@@ -68,6 +68,9 @@ void Input_Reset_Up() {
 }
 
 void Input_Encoder(int32_t delta) {
+  /*** Holding down the MANUAL button while scrolling increases speed by 50x ***/
+  if (but_manual) delta *= 50;
+
   g_pCurrentMenu->Input(INPUT_TYPE_ENCODER,delta);
   LCD_Backlight_Wake();
 }

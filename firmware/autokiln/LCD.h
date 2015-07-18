@@ -13,6 +13,8 @@ void LCD_Init();
 uint8_t * LCD_GetBuf();
 void LCD_Redraw();
 void LCD_Test();
+void LCD_ClearBuffer();
+void LCD_SetCursor(int32_t x, int32_t y);
 
 void LCD_Backlight_Wake();
 void LCD_Backlight_Tick();
