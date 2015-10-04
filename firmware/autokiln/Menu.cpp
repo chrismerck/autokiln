@@ -154,8 +154,8 @@ void MenuHist::Redraw() {
       "TIME %ld", RTC_GetTime());
 
   sprintf((char*)&lcd_buf[2*LCD_XMAX],
-      "E %3ldF%3ld%% MODE xxx",
-      humid_T[1]/10, humid_RH[1]/10);
+      "E %02X %02X %02X %02X %02X",
+      humid_data[0][0],humid_data[0][1],humid_data[0][2],humid_data[0][3],humid_data[0][4]);
 
   sprintf((char*)&lcd_buf[3*LCD_XMAX],
       "I %3ldF%3ld%% %3ldF%3ld%%",

@@ -4,7 +4,6 @@
 
 #define HUMID_READ_PERIOD_MS  2500
 
-#define HUMID_DATA_BYTES 5
 
 
 /* 
@@ -55,12 +54,12 @@ static void Humid_ISR_Loop() {
         /* got 4 bytes plus checksum */
         humid_bit[i]++; // mark as finished
         /* confirm checksum */
-        if (humid_data[i][4] == humid_data[i][0] + humid_data[i][1] 
-            + humid_data[i][2] + humid_data[i][3]) {
+        if (humid_data[i][4] == (humid_data[i][0] + humid_data[i][1] 
+            + humid_data[i][2] + humid_data[i][3])%256) {
           /* checksum correct, save */
           humid_RH[i] = ((int32_t)(humid_data[i][0])<<8) + humid_data[i][1];
           bool negT = (humid_data[i][2] & HUMID_NEG_BIT_MASK);
-          humid_T[i] = (negT?-1:1)*(((int32_t)(humid_data[i][2] & ~HUMID_NEG_BIT_MASK)<<8) + humid_data[i][3]);
+          humid_T[i] = ((negT?-1:1)*(((int32_t)(humid_data[i][2] & ~HUMID_NEG_BIT_MASK)<<8) + humid_data[i][3]))*9/5+320;
           new_humid[i] = true;
         }
       } 
@@ -101,7 +100,10 @@ static void Humid_Timer_CB(void* arg) {
    */
   while (true) {
     Humid_ISR_Loop();
-    if (TIM6->CNT > HUMID_TIMEOUT) break;
+    if (TIM6->CNT > HUMID_TIMEOUT) {
+      humid_RH[0] = 4010; // mark timeout error with "401% RH" code
+      break;
+    }
     if ((humid_bit[0] == HUMID_DATA_BYTES*8 + 1) && (humid_bit[1] == HUMID_DATA_BYTES*8 + 1)) break;
   }
 
